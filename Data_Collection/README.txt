@@ -4,4 +4,4 @@ Functions for collecting data from the arduino nano 33
 read_data_shorts.py outputs the data to stdout
 
 run as: 
-read_gyro_shorts.py > data.txt
+python read_gyro_shorts.py > data.txt
