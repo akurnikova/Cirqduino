@@ -1,0 +1,6 @@
+Copy .MTS video from camera. Name should be same as the associated trace.
+Convert video using ffmpeg. Needs to be deinterlaced using the yadif selector.
+Convert to .mp4
+
+Example:
+ffmpeg -i 0729_hipkey_salto_2_salto_nopancake.MTS -v:b 16000 -vf yadif -c:a aac 0729_hipkey_salto_2_salto_nopancake.mp4 -framerate 60000/1001
