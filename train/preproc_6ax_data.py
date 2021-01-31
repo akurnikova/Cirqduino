@@ -49,9 +49,9 @@ def load_and_preproc_data_single(file_name = '/home/asya/Desktop/Gyro_Data/bluep
             t_rec_reset = diff_reset#df.loc[tr,'rec_time_ms'] - df.loc[(tr-1),'rec_time_ms']
             df.loc[tr:len(df),'t'] = df.loc[tr:len(df),'t']+max(diff_reset,t_rec_reset)
 
-    button_press_idx = np.where(df.button2.diff()==1)[0]
+    button_press_idx = np.where(df.button2.diff()==-1)[0]
     b2_press_t = df.loc[button_press_idx, 't'].values/1000
-    button_press_idx = np.where(df.button1.diff()==1)[0]
+    button_press_idx = np.where(df.button1.diff()==-1)[0]
     b1_press_t = df.loc[button_press_idx, 't'].values/1000
 
     #set index as time
@@ -107,9 +107,9 @@ def load_and_preproc_data_batch(file_type = 'silks_preproc/*salto_pancake*'):
             t_rec_reset = diff_reset#df.loc[tr,'rec_time_ms'] - df.loc[(tr-1),'rec_time_ms']
             df.loc[tr:len(df),'t'] = df.loc[tr:len(df),'t']+max(diff_reset,t_rec_reset)
 
-    button_press_idx = np.where(df.button2.diff()==1)[0]
+    button_press_idx = np.where(df.button2.diff()==-1)[0]
     b2_press_t = df.loc[button_press_idx, 't'].values/1000
-    button_press_idx = np.where(df.button1.diff()==1)[0]
+    button_press_idx = np.where(df.button1.diff()==-1)[0]
     b1_press_t = df.loc[button_press_idx, 't'].values/1000
 
     #set index as time
@@ -230,8 +230,8 @@ def proc_parse_salto_clips_custom(t_pre = 1.5, t_post = 4, base = '/home/asya/De
             print(fle)
             
         if proc_nonsalto:
-            # find the signal droupouts more than 150 ms
-            ind_breaks = np.where(np.diff(df.index.values)>0.15)[0]
+            # find the signal droupouts more than 300 ms
+            ind_breaks = np.where(np.diff(df.index.values)>0.3)[0]
 
             ## preprocess the button presses (in case of imperfect recording)
             t_range = get_silks_time_range(df, b1_press_t)
